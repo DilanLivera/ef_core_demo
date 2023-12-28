@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.Api", "Web.Api\Web.Api.csproj", "{5DDC2B22-8564-4C48-AAEB-F2DCD10B3A9E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{259DD6CD-0DD6-4A26-8E07-EA5F323DE597}"
+	ProjectSection(SolutionItems) = preProject
+		.dockerignore = .dockerignore
+		.editorconfig = .editorconfig
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		nuget.config = nuget.config
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5DDC2B22-8564-4C48-AAEB-F2DCD10B3A9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DDC2B22-8564-4C48-AAEB-F2DCD10B3A9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DDC2B22-8564-4C48-AAEB-F2DCD10B3A9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DDC2B22-8564-4C48-AAEB-F2DCD10B3A9E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
