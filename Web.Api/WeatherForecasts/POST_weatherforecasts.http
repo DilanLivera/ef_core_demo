@@ -1,0 +1,6 @@
+@Web.Api_Host_Address = http://localhost:5000
+
+POST {{Web.Api_Host_Address}}/weatherforecast/
+Accept: application/json
+
+###
