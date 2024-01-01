@@ -21,6 +21,8 @@ services:
     hostname: sql_server_2022
     ports: # not actually needed, because the two services are on the same network
       - "1433:1433"
+    volumes:
+      - ./Web.Api/Data:/var/opt/mssql/data
     environment:
       - ACCEPT_EULA=y
       - SA_PASSWORD=A&VeryComplex123Password
