@@ -3,18 +3,20 @@
 services:
   web_api:
     image: web_api
+    container_name: web_api
     build:
       context: .
       dockerfile: /Web.Api/Dockerfile
-    container_name: web_api
     ports:
       - "5000:8080"
     depends_on:
-      - db
+      db:
+        condition: service_started
     environment:
       - WeatherForecastsContext__HOST=sql_server_2022
       - WeatherForecastsContext__UserId=SA
       - WeatherForecastsContext__PASSWORD=A&VeryComplex123Password
+
   db:
     image: "mcr.microsoft.com/mssql/server:2022-latest"
     container_name: sql_server_2022
