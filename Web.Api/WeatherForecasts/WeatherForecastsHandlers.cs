@@ -1,8 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Text.Json;
 using AutoFixture;
-using AutoFixture.Dsl;
-using AutoFixture.Kernel;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Web.Api.WeatherForecasts;
@@ -29,13 +27,14 @@ internal static class WeatherForecastsHandlers
             }
             else
             {
-                var forecasts = GetForecasts();
+                var fixture = new Fixture();
+                var seedData = new WeatherForecastsSeedData(fixture);
 
-                context.AddRange(forecasts);
+                context.AddRange(seedData.WeatherForecasts);
                 context.SaveChanges();
 
                 var weatherForecastsToLog = JsonSerializer.Serialize(
-                    context.WeatherForecasts.ToList().AsReadOnly());
+                    context.WeatherForecasts.ToList());
                 logger.LogInformation(
                     "{WeatherForecasts} are in the db",
                     weatherForecastsToLog);
@@ -46,36 +45,4 @@ internal static class WeatherForecastsHandlers
                 .ToArray()
                 .AsReadOnly();
         };
-
-    private static ReadOnlyCollection<WeatherForecast> GetForecasts()
-    {
-        var fixture = new Fixture();
-
-        ISpecimenBuilder Transformation(
-            ICustomizationComposer<WeatherForecast> forecast)
-        {
-            string SummaryFactory()
-            {
-                var summaryIndex = Random.Shared
-                    .Next(WeatherForecastSummaries.Value.Count);
-
-                return WeatherForecastSummaries.Value
-                    .ToArray()[summaryIndex];
-            }
-
-            return forecast
-                .Without(wf => wf.Id)
-                .With(
-                    propertyPicker: wf => wf.Summary,
-                    valueFactory: SummaryFactory);
-        }
-
-        fixture.Customize(
-            (Func<ICustomizationComposer<WeatherForecast>, ISpecimenBuilder>)Transformation);
-
-        return fixture
-            .CreateMany<WeatherForecast>(count: 100)
-            .ToList()
-            .AsReadOnly();
-    }
 }
