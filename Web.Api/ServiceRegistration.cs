@@ -11,9 +11,7 @@ internal static class ServiceRegistration
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
 
-        services.AddDbContext<WeatherForecastsContext>();
-        services.Configure<WeatherForecastsContextConfiguration>(
-            configuration.GetSection(key: WeatherForecastsContextConfiguration.SectionName));
+        services.AddWeatherForecast(configuration);
 
         services.AddProblemDetails();
 
